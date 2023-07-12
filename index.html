@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtVista - Online Art Gallery</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+  <style>
+    /* Additional Custom Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111827;
+      color: #fff;
+    }
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+    }
+    .marquee {
+      white-space: nowrap;
+      display: inline-block;
+      animation: marquee linear infinite;
+    }
+    .marquee img {
+      display: inline-block;
+      margin-right: 20px;
+      width: 100px;
+      height: auto;
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-gray-800 py-4">
+    <nav class="container flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold text-white">ArtVista</a>
+      <ul class="flex space-x-4">
+        <li><a href="index.html" class="text-white">Home</a></li>
+        <li><a href="gallery.html" class="text-white">Gallery</a></li>
+        <li><a href="about.html" class="text-white">About</a></li>
+        <li><a href="contact.html" class="text-white">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero bg-gray-900 py-16">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold text-white">Welcome to Painting Gallery</h1>
+      <p class="text-lg text-gray-400 mt-4">Discover exquisite paintings created by talented artists.</p>
+      <a href="#gallery" class="btn mt-8 inline-block px-6 py-3 text-lg font-semibold text-white bg-gray-800 hover:bg-gray-700 transition duration-300">Explore Now</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8">Explore Our Collection</h2>
+      <div class="marquee-container">
+        <div class="marquee" id="pictures-container">
+          <!-- Images will be dynamically added here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about bg-gray-900 py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8">About Us</h2>
+      <p class="text-lg text-gray-400 leading-relaxed mx-auto max-w-xl">ArtVista aims to bring the experience of visiting an art gallery online, allowing users to explore and appreciate a wide range of artworks from different artists and genres.
+
+        Virtual art is a term for the virtualization of art, made with the technical media developed at the end of the 1980s.These include human-machine interfaces such as visualization casks, stereoscopic spectacles and screens, digital painting and sculpture, generators of three-dimensional sound, data gloves, data clothes, position sensors, tactile and power feed-back systems, etc. As virtual art covers such a wide array of mediums it is a catch-all term for specific focuses within it. Much contemporary art has become, in Frank Popper's terms, virtualized.</p>
+     <!-- <p class="text-lg text-gray-400 leading-relaxed mx-auto max-w-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8">Contact Us</h2>
+      <p class="text-lg text-gray-400 leading-relaxed mx-auto max-w-xl mb-8">Have a question or want to inquire about a specific painting? Reach out to us.</p>
+      <form action="#" method="POST" class="mx-auto max-w-md">
+        <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 mb-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
+        <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 mb-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
+        <textarea name="message" placeholder="Your Message" required class="w-full px-4 py-3 mb-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"></textarea>
+        <button type="submit" class="btn inline-block px-6 py-3 text-lg font-semibold text-white bg-gray-800 hover:bg-gray-700 transition duration-300">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2023 ArtVista Painting Gallery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/2.2.16/tailwind.min.js"></script>
+  <!-- Additional Scripts -->
+  <script>
+    const picturesContainer = document.getElementById("pictures-container");
+
+    // Function to create and add an image element to the marquee
+    function addImageToMarquee(imageUrl) {
+      const image = document.createElement("img");
+      image.src = imageUrl;
+      image.alt = "Marquee Image";
+      picturesContainer.appendChild(image);
+    }
+
+    // Add images to the marquee
+    addImageToMarquee("Monalisa.jpg");
+    addImageToMarquee("King.jpg");
+    addImageToMarquee("pharoah.jpg");
+    addImageToMarquee("city.jpg");
+    addImageToMarquee("christ.jpg");
+    addImageToMarquee("anatomy.jpg");
+    addImageToMarquee("12345.jpg");
+    addImageToMarquee("123.jpg");
+    addImageToMarquee("gardanne.jpg");
+    addImageToMarquee("111.jpg");
+
+    // Reset marquee position when animation ends
+    picturesContainer.addEventListener("animationiteration", function () {
+      this.style.transform = "translateX(100%)";
+    });
+  </script>
+</body>
+</html>

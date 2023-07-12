@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtVista Painting Gallery - Online Art Gallery</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+  <style>
+    /* Additional Custom Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111827;
+      color: #fff;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px; /* Adjust the gap between images */
+      margin-top: 20px;
+    }
+    .artwork-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .artwork-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .artwork-details {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      z-index: 999;
+      padding: 20px;
+    }
+    .artwork-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .artwork-artist {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .artwork-description {
+      font-size: 14px;
+    }
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-gray-800 py-4">
+    <nav class="container flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold text-white">ArtVista Painting Gallery</a>
+      <ul class="flex space-x-4">
+        <li><a href="index.html#home" class="text-white">Home</a></li>
+        <li><a href="gallery.html" class="text-white">Gallery</a></li>
+        <li><a href="about.html" class="text-white">About</a></li>
+        <li><a href="contact.html" class="text-white">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8">Explore Our Collection</h2>
+      <div class="gallery-grid">
+        <!-- Artwork items will be dynamically added here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/2.2.16/tailwind.min.js"></script>
+  <!-- Additional Scripts -->
+  <script>
+    const galleryGrid = document.querySelector(".gallery-grid");
+    const artworks = [
+      {
+        imageUrl: "Monalisa.jpg",
+        title: "Mona Lisa",
+        artist: "Leonardo da Vinci",
+        description: "A portrait painting by Leonardo da Vinci."
+      },
+      {
+        imageUrl: "King.jpg",
+        title: "The King",
+        artist: "Unknown",
+        description: "An abstract painting representing power and authority."
+      },
+      // Add more artworks here
+    ];
+
+    function openArtworkDetails(artwork) {
+      const detailsElement = document.createElement("div");
+      detailsElement.className = "artwork-details";
+      detailsElement.innerHTML = `
+        <h3 class="artwork-title">${artwork.title}</h3>
+        <p class="artwork-artist">${artwork.artist}</p>
+        <p class="artwork-description">${artwork.description}</p>
+        <span class="close-button">&times;</span>
+      `;
+      document.body.appendChild(detailsElement);
+
+      const closeButton = document.querySelector(".close-button");
+      closeButton.addEventListener("click", closeArtworkDetails);
+    }
+
+    function closeArtworkDetails() {
+      const detailsElement = document.querySelector(".artwork-details");
+      if (detailsElement) {
+        detailsElement.remove();
+      }
+    }
+
+    function handleArtworkClick(artwork) {
+      openArtworkDetails(artwork);
+    }
+
+    function createArtworkElement(artwork) {
+      const artworkContainer = document.createElement("div");
+      artworkContainer.className = "artwork-container";
+
+      const artworkImage = document.createElement("img");
+      artworkImage.src = artwork.imageUrl;
+      artworkImage.alt = artwork.title;
+      artworkImage.className = "artwork-image";
+      artworkImage.addEventListener("click", () => handleArtworkClick(artwork));
+
+      artworkContainer.appendChild(artworkImage);
+      galleryGrid.appendChild(artworkContainer);
+    }
+
+    artworks.forEach((artwork) => {
+      createArtworkElement(artwork);
+    });
+  </script>
+</body>
+</html>
